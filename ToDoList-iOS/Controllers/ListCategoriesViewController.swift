@@ -30,7 +30,7 @@ class ListCategoriesViewController: UIViewController, UITableViewDataSource, UIT
     // MARK: UITableViewDataSource methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return categoriesArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -52,14 +52,19 @@ class ListCategoriesViewController: UIViewController, UITableViewDataSource, UIT
     // MARK: UIViewController methods
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToList" {    
-            if segue.destination.isKind(of: ListViewController.self) {
-                let listVC = segue.destination as! ListViewController
-                
-                let indexPath = sender as! IndexPath
-                
-                listVC.listData = categoriesArray[indexPath.row]
+        if segue.identifier == "goToList" {
+            
+            guard let listVC = segue.destination as? ListViewController else {
+                print("Make sure the goToList segues to a view controller of ListViewController type")
+                return
             }
+            
+            guard let indexPath = sender as? IndexPath else {
+                print("Make sure the 'sender' argument passed to performSegue is of IndexPath type")
+                return
+            }
+            
+            listVC.listData = categoriesArray[indexPath.row]
         }
     }
 }

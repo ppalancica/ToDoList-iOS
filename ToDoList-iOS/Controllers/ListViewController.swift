@@ -17,7 +17,7 @@ class ListViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        print(listData!)
+        print("Category name is: \(listData!)")
     }
 
     /*
