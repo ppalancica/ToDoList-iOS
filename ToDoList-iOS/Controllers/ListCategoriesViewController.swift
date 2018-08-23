@@ -33,13 +33,34 @@ class ListCategoriesViewController: UIViewController, UITableViewDataSource, UIT
         return 5
     }
     
-    // MARK: UITableViewDelegate methods
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.categoriesTableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
         
         cell.textLabel?.text = categoriesArray[indexPath.row]
         
         return cell
+    }
+    
+    // MARK: UITableViewDelegate methods
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        performSegue(withIdentifier: "goToList", sender: indexPath)
+    }
+    
+    // MARK: UIViewController methods
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToList" {    
+            if segue.destination.isKind(of: ListViewController.self) {
+                let listVC = segue.destination as! ListViewController
+                
+                let indexPath = sender as! IndexPath
+                
+                listVC.listData = categoriesArray[indexPath.row]
+            }
+        }
     }
 }
 
