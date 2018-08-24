@@ -28,13 +28,13 @@ class ListCategoriesViewController: UIViewController, UITableViewDataSource, UIT
         
         categoriesArray = Array(listsData.keys)
         
-        self.categoriesTableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
+        categoriesTableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
         
         categoriesTableView.dataSource = self
         categoriesTableView.delegate = self
     }
 
-    // MARK: UITableViewDataSource methods
+    // MARK: - UITableViewDataSource methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categoriesArray.count
@@ -48,7 +48,7 @@ class ListCategoriesViewController: UIViewController, UITableViewDataSource, UIT
         return cell
     }
     
-    // MARK: UITableViewDelegate methods
+    // MARK: - UITableViewDelegate methods
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(80)
@@ -60,7 +60,7 @@ class ListCategoriesViewController: UIViewController, UITableViewDataSource, UIT
         performSegue(withIdentifier: "goToList", sender: indexPath)
     }
     
-    // MARK: UIViewController methods
+    // MARK: - UIViewController methods
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToList" {
