@@ -10,14 +10,16 @@ import UIKit
 
 class ListViewController: UIViewController {
     
-    var listData: String!
+    var categoryName: String!
+    var listItems: [String]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
-        print("Category name is: \(listData!)")
+        print("Category name is: \(categoryName!)")
+        print("List items are: \(listItems!)")
     }
 
     /*
