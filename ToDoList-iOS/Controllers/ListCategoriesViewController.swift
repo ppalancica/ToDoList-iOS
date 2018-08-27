@@ -43,9 +43,13 @@ class ListCategoriesViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.categoriesTableView.dequeueReusableCell(withIdentifier: "ListCategoryCell", for: indexPath)
+        let cell = self.categoriesTableView.dequeueReusableCell(withIdentifier: "ListCategoryCell", for: indexPath) as! ListCategoryCell
         
-        cell.textLabel?.text = categoriesArray[indexPath.row]
+        let categoryName = categoriesArray[indexPath.row]
+        let numberOfItems = listsData[categoryName]!
+        
+        cell.categoryNameLabel.text = categoryName
+        cell.numberOfItemsLabel.text = String(numberOfItems.count)
         
         return cell
     }

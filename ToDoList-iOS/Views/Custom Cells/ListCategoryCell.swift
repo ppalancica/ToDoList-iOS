@@ -10,6 +10,9 @@ import UIKit
 
 class ListCategoryCell: UITableViewCell {
 
+    @IBOutlet weak var categoryNameLabel: UILabel!
+    @IBOutlet weak var numberOfItemsLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
