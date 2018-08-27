@@ -28,12 +28,14 @@ class ListCategoriesViewController: UIViewController, UITableViewDataSource, UIT
         
         categoriesArray = Array(listsData.keys)
         
-        categoriesTableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
+        let cellNib = UINib.init(nibName: "ListCategoryCell", bundle: nil)
+        
+        categoriesTableView.register(cellNib, forCellReuseIdentifier: "ListCategoryCell")
         
         categoriesTableView.dataSource = self
         categoriesTableView.delegate = self
     }
-
+    
     // MARK: - UITableViewDataSource methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -41,7 +43,7 @@ class ListCategoriesViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.categoriesTableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
+        let cell = self.categoriesTableView.dequeueReusableCell(withIdentifier: "ListCategoryCell", for: indexPath)
         
         cell.textLabel?.text = categoriesArray[indexPath.row]
         
